@@ -6,13 +6,32 @@
 
     for (const task of tasks) {
       htmlString += `
-            <li>
+            <li ${task.done ? " class=\"list__doneTask\"" : ""}>
             ${task.content}
             </li>
+            <button class="js-check">Zrobione</button>
+            <button class="js-remove">Usuń zadanie</button>
             `;
     };
 
     document.querySelector(".js-tasksList").innerHTML = htmlString;
+
+
+    const checkButtons = document.querySelectorAll(".js-check");
+
+    checkButtons.forEach((checkButton, index) => {
+      checkButton.addEventListener("click", () => {
+        checkTask(index);
+      });
+    });
+
+    const removeButtons = document.querySelectorAll(".js-remove");
+
+    removeButtons.forEach((removeButton, index) => {
+      removeButton.addEventListener("click", () => {
+        removeTask(index);
+      });
+    });
   };
 
   const addTask = (newTaskContent) => {
@@ -20,6 +39,17 @@
       content: newTaskContent,
     });
 
+    render();
+  };
+
+  const checkTask = (taskIndex) => {
+    tasks[taskIndex].done = !tasks[taskIndex].done;
+
+    render();
+  };
+
+  const removeTask = (taskIndex) => {
+    tasks.splice(taskIndex, 1);
     render();
   }
 
