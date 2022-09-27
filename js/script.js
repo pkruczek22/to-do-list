@@ -17,10 +17,10 @@
     document.querySelector(".js-tasksList").innerHTML = htmlString;
 
 
-    const checkButtons = document.querySelectorAll(".js-toggleTaskDone");
+    const toggleDoneButtons = document.querySelectorAll(".js-toggleTaskDone");
 
-    checkButtons.forEach((checkButton, index) => {
-      checkButton.addEventListener("click", () => {
+    toggleDoneButtons.forEach((toggleDoneButton, index) => {
+      toggleDoneButton.addEventListener("click", () => {
         toggleTaskDone(index);
       });
     });
