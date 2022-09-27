@@ -1,12 +1,13 @@
 .section {
     background-color: #fff;
+    margin-bottom: 10px;
 }
 
 .section__container {
     border-bottom: 4px solid #eee;
     padding: 20px;
-    
 }
+
 .section__header {
     margin: 0px;
     font-size: 20px;
