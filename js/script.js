@@ -9,23 +9,23 @@
             <li ${task.done ? " class=\"list__doneTask\"" : ""}>
             ${task.content}
             </li>
-            <button class="js-check">Zrobione</button>
-            <button class="js-remove">Usuń zadanie</button>
+            <button class="js-toggleTaskDone">Zrobione</button>
+            <button class="js-removeTask">Usuń zadanie</button>
             `;
     };
 
     document.querySelector(".js-tasksList").innerHTML = htmlString;
 
 
-    const checkButtons = document.querySelectorAll(".js-check");
+    const checkButtons = document.querySelectorAll(".js-toggleTaskDone");
 
     checkButtons.forEach((checkButton, index) => {
       checkButton.addEventListener("click", () => {
-        checkTask(index);
+        toggleTaskDone(index);
       });
     });
 
-    const removeButtons = document.querySelectorAll(".js-remove");
+    const removeButtons = document.querySelectorAll(".js-removeTask");
 
     removeButtons.forEach((removeButton, index) => {
       removeButton.addEventListener("click", () => {
@@ -42,7 +42,7 @@
     render();
   };
 
-  const checkTask = (taskIndex) => {
+  const toggleTaskDone = (taskIndex) => {
     tasks[taskIndex].done = !tasks[taskIndex].done;
 
     render();
