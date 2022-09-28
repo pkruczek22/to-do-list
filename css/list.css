@@ -1,0 +1,49 @@
+.list {
+    word-break: break-word;
+    padding-left: 0;
+}
+
+.list__container {
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 3px solid #eee;
+    padding: 10px 0px ;
+}
+
+.list__task {
+    list-style-type: none;
+}
+
+.list__task--done {
+    text-decoration: line-through;
+}
+
+.list__button {
+    width: 25px;
+    height: 25px;
+    background-color: #1A7B1F;
+    color: #fff;
+    border: none;
+}
+
+.list__button:hover {
+    background-color: #08a810;
+}
+
+.list__button:active {
+    background-color: #00c40a;
+}
+
+.list__button--removeTaskButton {
+    background-color: #db143c;
+}
+
+.list__button--removeTaskButton:hover {
+    background-color: #ff0033;
+}
+
+.list__button--removeTaskButton:active {
+    background-color: #ff4167;
+}
