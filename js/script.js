@@ -1,21 +1,7 @@
 {
   const tasks = [];
 
-  const render = () => {
-    let htmlString = "";
-
-    for (const task of tasks) {
-      htmlString += `
-            <li ${task.done ? " class=\"list__doneTask\"" : ""}>
-            ${task.content}
-            </li>
-            <button class="js-toggleTaskDone">Zrobione</button>
-            <button class="js-removeTask">Usuń zadanie</button>
-            `;
-    };
-
-    document.querySelector(".js-tasksList").innerHTML = htmlString;
-
+  const handleButtonEvents = () => {
 
     const toggleDoneButtons = document.querySelectorAll(".js-toggleTaskDone");
 
@@ -52,6 +38,28 @@
     tasks.splice(taskIndex, 1);
     render();
   }
+
+  const render = () => {
+    let htmlString = "";
+
+    for (const task of tasks) {
+      htmlString += `
+            <div class="list__container">
+            <button class=" list__button js-toggleTaskDone">
+            ${task.done ? "✔" : ""}
+            </button>
+            <li class="list__task ${task.done ? "list__task--done" : ""}">
+            ${task.content}
+            </li>
+            <button class="list__button list__button--removeTaskButton js-removeTask">🗑</button>
+            </div>
+            `;
+    };
+
+    document.querySelector(".js-tasksList").innerHTML = htmlString;
+
+    handleButtonEvents();
+  };
 
   const refreshInput = (newTaskElement) => {
     newTaskElement.value = "";
