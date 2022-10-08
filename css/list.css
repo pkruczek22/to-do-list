@@ -1,11 +1,14 @@
 .list {
     word-break: break-word;
     padding-left: 0;
+    border-bottom: 4px solid #eee;
+    padding: 36px 20px;
+    margin: 0;
 }
 
 .list__container {
     display: grid;
-    grid-template-columns: 30px 1fr 30px;
+    grid-template-columns: auto 1fr auto;
     gap: 10px;
     align-items: center;
     border-bottom: 2px solid #eee;
