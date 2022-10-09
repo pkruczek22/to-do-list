@@ -2,17 +2,18 @@
     word-break: break-word;
     padding-left: 0;
     border-bottom: 4px solid #eee;
-    padding: 36px 20px;
+    padding: 28px 20px;
     margin: 0;
 }
 
-.list__container {
+.list__item {
     display: grid;
     grid-template-columns: auto 1fr auto;
     gap: 10px;
     align-items: center;
     border-bottom: 2px solid #eee;
     padding: 10px 0px ;
+    margin: 8px 0px;
 }
 
 .list__task {

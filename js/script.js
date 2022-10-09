@@ -37,23 +37,25 @@
   const removeTask = (taskIndex) => {
     tasks.splice(taskIndex, 1);
     render();
-  }
+  };
 
   const render = () => {
     let htmlString = "";
 
     for (const task of tasks) {
       htmlString += `
-            <div class="list__container">
-            <button class=" list__button js-toggleTaskDone">
-            ${task.done ? "✔" : ""}
-            </button>
-            <li class="list__task ${task.done ? "list__task--done" : ""}">
-            ${task.content}
-            </li>
-            <button class="list__button list__button--removeTaskButton js-removeTask">🗑</button>
-            </div>
-            `;
+          <li class="list__item">
+              <button class="list__button js-toggleTaskDone">
+                  ${task.done ? "✔" : ""}
+              </button>
+              <span class="list__task ${task.done ? "list__task--done" : ""}">
+                  ${task.content}
+              </span>
+              <button class="list__button list__button--removeTaskButton js-removeTask">
+                  🗑
+              </button>
+          </li>
+      `;
     };
 
     document.querySelector(".js-tasksList").innerHTML = htmlString;
@@ -64,7 +66,7 @@
   const refreshInput = (newTaskElement) => {
     newTaskElement.value = "";
     newTaskElement.focus();
-  }
+  };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -90,4 +92,4 @@
   };
 
   init();
-}
+};
