@@ -30,6 +30,7 @@
     background-color: #1A7B1F;
     color: #fff;
     border: none;
+    transition: 0.25s;
 }
 
 .list__button:hover {

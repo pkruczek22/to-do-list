@@ -16,10 +16,12 @@
     color: #fff;
     padding: 10px;
     border: none;
+    transition: 0.25s;
 }
 
 .form__button:hover {
     background-color: hsl(180, 100%, 30%);
+    transform: scale(1.07);
 } 
 
 .form__button:active {
