@@ -1,49 +1,59 @@
 {
-  const tasks = [];
+    let tasks = [];
 
-  const handleButtonEvents = () => {
+    const refreshInput = (newTaskElement) => {
+        newTaskElement.value = "";
+        newTaskElement.focus();
+    };
 
-    const toggleDoneButtons = document.querySelectorAll(".js-toggleTaskDone");
+    const addTask = (newTaskContent) => {
+        tasks = [
+            ...tasks,
+            { content: newTaskContent },
+        ];
+        render();
+    };
 
-    toggleDoneButtons.forEach((toggleDoneButton, index) => {
-      toggleDoneButton.addEventListener("click", () => {
-        toggleTaskDone(index);
-      });
-    });
+    const toggleTaskDone = (taskIndex) => {
+        tasks = [
+            ...tasks.slice(0, taskIndex),
+            { ...tasks[taskIndex], done: !tasks[taskIndex].done },
+            ...tasks.slice(taskIndex + 1),
+        ];
+        render();
+    };
 
-    const removeButtons = document.querySelectorAll(".js-removeTask");
+    const removeTask = (taskIndex) => {
+        tasks = [
+            ...tasks.slice(0, taskIndex),
+            ...tasks.slice(taskIndex + 1),
+        ];
+        render();
+    };
 
-    removeButtons.forEach((removeButton, index) => {
-      removeButton.addEventListener("click", () => {
-        removeTask(index);
-      });
-    });
-  };
+    const bindTaskEvents = () => {
 
-  const addTask = (newTaskContent) => {
-    tasks.push({
-      content: newTaskContent,
-    });
+        const toggleDoneButtons = document.querySelectorAll(".js-toggleTaskDone");
+        const removeButtons = document.querySelectorAll(".js-removeTask");
 
-    render();
-  };
+        toggleDoneButtons.forEach((toggleDoneButton, index) => {
+            toggleDoneButton.addEventListener("click", () => {
+                toggleTaskDone(index);
+            });
+        });
 
-  const toggleTaskDone = (taskIndex) => {
-    tasks[taskIndex].done = !tasks[taskIndex].done;
+        removeButtons.forEach((removeButton, index) => {
+            removeButton.addEventListener("click", () => {
+                removeTask(index);
+            });
+        });
+    };
 
-    render();
-  };
+    const renderTasks = () => {
+        let htmlString = "";
 
-  const removeTask = (taskIndex) => {
-    tasks.splice(taskIndex, 1);
-    render();
-  };
-
-  const render = () => {
-    let htmlString = "";
-
-    for (const task of tasks) {
-      htmlString += `
+        for (const task of tasks) {
+            htmlString += `
           <li class="list__item">
               <button class="list__button js-toggleTaskDone">
                   ${task.done ? "✔" : ""}
@@ -56,40 +66,39 @@
               </button>
           </li>
       `;
+        };
+
+        document.querySelector(".js-tasksList").innerHTML = htmlString;
     };
 
-    document.querySelector(".js-tasksList").innerHTML = htmlString;
-
-    handleButtonEvents();
-  };
-
-  const refreshInput = (newTaskElement) => {
-    newTaskElement.value = "";
-    newTaskElement.focus();
-  };
-
-  const onFormSubmit = (event) => {
-    event.preventDefault();
-
-    const newTaskElement = document.querySelector(".js-newTask");
-    const newTaskContent = newTaskElement.value.trim();
-
-    if (newTaskContent === "") {
-      return;
+    const render = () => {
+        renderTasks();
+        bindTaskEvents();
     };
 
-    addTask(newTaskContent);
-    refreshInput(newTaskElement);
-  };
+    const onFormSubmit = (event) => {
+        event.preventDefault();
 
-  const init = () => {
-    render();
+        const newTaskElement = document.querySelector(".js-newTask");
+        const newTaskContent = newTaskElement.value.trim();
 
-    const form = document.querySelector(".js-form");
+        if (newTaskContent === "") {
+            return;
+        };
 
-    form.addEventListener("submit", onFormSubmit);
+        addTask(newTaskContent);
+        refreshInput(newTaskElement);
+    };
 
-  };
+    const init = () => {
+        render();
 
-  init();
+        const form = document.querySelector(".js-form");
+
+        form.addEventListener("submit", onFormSubmit);
+
+    };
+
+    init();
+    
 };
