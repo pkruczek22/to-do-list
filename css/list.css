@@ -16,6 +16,10 @@
     margin: 8px 0px;
 }
 
+.list__item--hidden {
+    display: none;
+}
+
 .list__task {
     list-style-type: none;
 }
