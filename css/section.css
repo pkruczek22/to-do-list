@@ -14,13 +14,20 @@
     padding: 20px;
 }
 
-.section__header--listHeader {
-    border-bottom: none;
-    padding: 0px
-}
-
 .section__header--grid {
     display: grid;
     grid-template-columns: auto auto;
     justify-content: space-between;
+    align-items: center;
+}
+
+.section__header--listHeader {
+    border-bottom: none;
+    padding: 0px;
+}
+
+@media (max-width: 767px) {
+   .section__header--grid {
+    grid-template-columns: 1fr;
+   }
 }
