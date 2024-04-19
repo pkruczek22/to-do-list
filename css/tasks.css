@@ -1,5 +1,30 @@
-.list {
+.tasksList {
     padding: 32px 25px;
     font-size: 22px;
     margin: auto;
+    list-style-type: none;
+}
+
+.tasksList__item {
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    grid-gap: 10px;
+    align-items: center;
+    border-bottom: #ebebeb solid 2px;
+    padding: 15px;
+}
+
+.tasksList__button {
+    width: 35px;
+    height: 35px;
+    border: none;
+    color: #fff;
+}
+
+.tasksList__button--markDone {
+    background-color: #029126;
+}
+
+.tasksList__button--deleteTask {
+    background-color: rgb(202, 0, 0);
 }
