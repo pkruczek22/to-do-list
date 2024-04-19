@@ -30,7 +30,16 @@
 }
 
 .tasksList__button--markDone {
-    background-color: #029126;
+    background-color: hsl(135, 97%, 29%);
+}
+
+.tasksList__button--markDone:hover{
+    background-color: hsl(135, 97%, 40%);
+    outline: none;
+}
+
+.tasksList__button--markDone:active{
+    background-color: hsl(135, 97%, 20%);
 }
 
 .tasksList__button--deleteTask {
