@@ -6,7 +6,7 @@
     grid-gap: 20px;
 }
 
-.form__taskContent {
+.form__taskInput {
     padding: 8px 15px;
     border: #ebebeb 2px solid;
 }
