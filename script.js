@@ -8,6 +8,16 @@
             content: "zrobić zakupy"
         }
     ]
+
+    const addTask = (taskInput) => {
+        const taskContent = taskInput.value.trim()
+        tasks.push({ content: taskContent })
+    }
+
+    const refreshInput = (taskInput) => {
+        taskInput.value = ""
+        taskInput.focus()
+    }
     
     const render = () => {
         const tasksList = document.querySelector(".js-tasksList")
@@ -27,7 +37,12 @@
     }
 
     const onSubmit = (event) => {
+        const taskInput = document.querySelector(".js-taskContent")
+
         event.preventDefault();
+        addTask(taskInput)
+        refreshInput(taskInput)
+        
         render();
     };
 
