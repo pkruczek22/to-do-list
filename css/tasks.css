@@ -7,11 +7,19 @@
 
 .tasksList__item {
     display: grid;
-    grid-template-columns: 40px 1fr 40px;
+    grid-template-columns: 40px minmax(100px, 1fr) 40px;
     grid-gap: 10px;
     align-items: center;
     border-bottom: #ebebeb solid 2px;
     padding: 15px;
+}
+
+.tasksList__content {
+    word-wrap: break-word;
+}
+
+.tasksList__content--done {
+    text-decoration: line-through;
 }
 
 .tasksList__button {
