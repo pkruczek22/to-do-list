@@ -49,16 +49,19 @@
       htmlString += `
       <li class="tasksList__item">
         <button 
-        class="tasksList__button tasksList__button--markDone js-markDoneButton">
+          class="tasksList__button tasksList__button--markDone js-markDoneButton"
+        >
           ${task.done ? "✔" : ""}
         </button>
         <span 
-        class="tasksList__content js-taskContent 
-        ${task.done ? "tasksList__content--done" : ""}">
+          class="tasksList__content js-taskContent 
+          ${task.done ? "tasksList__content--done" : ""}"
+        >
           ${task.content}
         </span>
         <button 
-        class="tasksList__button tasksList__button--deleteTask js-deleteButton">
+          class="tasksList__button tasksList__button--deleteTask js-deleteButton"
+        >
           🗑
         </button>
       </li>
