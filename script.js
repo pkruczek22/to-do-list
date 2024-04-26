@@ -69,16 +69,18 @@
   }
 
   const bindOptionButtonsEvent = () => {
-    const hideDoneButton = document.querySelector(".js-hideDoneButton")
-    const markAllDoneButton = document.querySelector(".js-markAllDoneButton")
+    if (tasks.length) {
+      const hideDoneButton = document.querySelector(".js-hideDoneButton")
+      const markAllDoneButton = document.querySelector(".js-markAllDoneButton")
 
-    hideDoneButton.addEventListener("click", () => {
-      hideDoneTasks();
-    });
+      hideDoneButton.addEventListener("click", () => {
+        hideDoneTasks();
+      });
 
-    markAllDoneButton.addEventListener("click", () => {
-      markAllTasksDone();
-    });
+      markAllDoneButton.addEventListener("click", () => {
+        markAllTasksDone();
+      });
+    };
   };
 
   const renderTasks = () => {
@@ -119,7 +121,7 @@
       htmlString += `
         <button 
         class="optionButton js-hideDoneButton"
-        ${tasks.some(({done}) => done) ? "" : "disabled"}
+        ${tasks.some(({ done }) => done) ? "" : "disabled"}
         >
           ${hideTasks ? "Pokaż ukończone" : "Ukryj ukończone"}
         </button>
@@ -131,8 +133,8 @@
         </button>
         `
 
-      buttonsContainer.innerHTML = htmlString
     }
+    buttonsContainer.innerHTML = htmlString
   }
 
   const render = () => {
