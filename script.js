@@ -55,9 +55,9 @@
   const markAllTasksDone = () => {
     tasks = tasks.map(task => ({
       ...task,
-      done: true
+      done: true,
     }));
-    render()
+    render();
   }
 
   const bindOptionButtonsEvent = () => {
@@ -67,7 +67,6 @@
     hideDoneButton.addEventListener("click", () => console.log("Siema"))
 
     markAllDoneButton.addEventListener("click", () => {
-      console.log("No co tam");
       markAllTasksDone();
     });
   };

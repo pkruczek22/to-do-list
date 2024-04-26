@@ -11,3 +11,16 @@
     color: hsl(184, 100%, 25%);
     font-size: large;
 }
+
+.optionButton:hover {
+    color: hsl(184, 100%, 35%);
+    outline: none;
+}
+
+.optionButton:active {
+    color: hsl(184, 100%, 20%);
+}
+
+.optionButton:disabled {
+    color: hsl(0, 0%, 72%);
+}
