@@ -22,11 +22,19 @@
     background-color: hsl(184, 100%, 25%);
     color: #fff;
     border: none;
+    transition: 0.4s;
 }
 
 .form__button:hover {
     background-color: hsl(184, 100%, 35%);
     outline: none;
+    transform: scale(1.1);
+}
+
+@media (max-width: 767px) {
+    .form__button:hover {
+        transform: none;
+    }
 }
 
 .form__button:active {

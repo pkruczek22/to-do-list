@@ -18,6 +18,7 @@
     color: hsl(184, 100%, 25%);
     font-size: large;
     padding: 10px;
+    transition: 0.4s;
 }
 
 .optionButton:hover {
