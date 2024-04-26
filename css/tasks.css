@@ -14,6 +14,10 @@
     padding: 15px;
 }
 
+.tasksList__item--hidden {
+    display: none;
+}
+
 .tasksList__content {
     word-wrap: break-word;
 }
