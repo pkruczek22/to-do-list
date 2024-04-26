@@ -73,13 +73,8 @@
       const hideDoneButton = document.querySelector(".js-hideDoneButton")
       const markAllDoneButton = document.querySelector(".js-markAllDoneButton")
 
-      hideDoneButton.addEventListener("click", () => {
-        hideDoneTasks();
-      });
-
-      markAllDoneButton.addEventListener("click", () => {
-        markAllTasksDone();
-      });
+      hideDoneButton.addEventListener("click", () => hideDoneTasks);
+      markAllDoneButton.addEventListener("click", () => markAllTasksDone);
     };
   };
 
@@ -92,22 +87,22 @@
       <li class="tasksList__item ${task.done && hideTasks ? "tasksList__item--hidden" : ""}"
       >
         <button 
-        class="tasksList__button tasksList__button--markDone js-markDoneButton"
+          class="tasksList__button tasksList__button--markDone js-markDoneButton"
         >
-        ${task.done ? "✔" : ""}
+          ${task.done ? "✔" : ""}
         </button>
         <span 
-        class="tasksList__content js-taskContent 
-        ${task.done ? "tasksList__content--done" : ""}"
+          class="tasksList__content js-taskContent 
+          ${task.done ? "tasksList__content--done" : ""}"
         >
-        ${task.content}
+          ${task.content}
         </span>
         <button 
-        class="tasksList__button tasksList__button--deleteTask js-deleteButton"
+          class="tasksList__button tasksList__button--deleteTask js-deleteButton"
         >
-        🗑
+          🗑
         </button>
-        </li>
+      </li>
         `
     };
 
@@ -120,16 +115,16 @@
     if (tasks.length !== 0) {
       htmlString += `
         <button 
-        class="optionButton js-hideDoneButton"
-        ${tasks.some(({ done }) => done) ? "" : "disabled"}
+          class="optionButton js-hideDoneButton"
+          ${tasks.some(({ done }) => done) ? "" : "disabled"}
         >
           ${hideTasks ? "Pokaż ukończone" : "Ukryj ukończone"}
         </button>
         <button 
-        class="optionButton js-markAllDoneButton" 
-        ${tasks.every(({ done }) => done) ? "disabled" : ""}
+          class="optionButton js-markAllDoneButton" 
+          ${tasks.every(({ done }) => done) ? "disabled" : ""}
         >
-        Ukończ wszystkie
+          Ukończ wszystkie
         </button>
         `
 
@@ -146,7 +141,7 @@
 
   const refreshInput = (taskInput) => {
     taskInput.value = ""
-    taskInput.focus()
+    taskInput.focus();
   };
 
   const onSubmit = (event) => {
