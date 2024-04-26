@@ -2,7 +2,14 @@
     display: grid;
     grid-template-columns: repeat(2, 170px);
     justify-content: end;
-    padding: 15px;
+    padding: 0px 15px;
+}
+
+@media (max-width: 767px) {
+    .buttonsContainer {
+        grid-template-columns: 1fr;
+        margin-bottom: 20px;
+    }
 }
 
 .optionButton {
@@ -10,6 +17,7 @@
     border: none;
     color: hsl(184, 100%, 25%);
     font-size: large;
+    padding: 10px;
 }
 
 .optionButton:hover {

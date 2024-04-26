@@ -23,3 +23,9 @@
     border-bottom: #ebebeb solid 2px;
     justify-content: space-between;
 }
+
+@media (max-width: 767px) {
+    .section__container {
+        grid-template-columns: 1fr;
+    }
+}
