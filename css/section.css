@@ -11,3 +11,15 @@
     border-bottom: #ebebeb solid 2px;
     margin: auto;
 }
+
+.section__header--listHeader {
+    border: none;
+    margin: 0;
+}
+
+.section__container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-bottom: #ebebeb solid 2px;
+    justify-content: space-between;
+}

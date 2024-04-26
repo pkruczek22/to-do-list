@@ -10,7 +10,7 @@
       { content: taskInput.value.trim() }
     ]
 
-    render();
+    renderTasks();
   };
 
   const deleteTask = (taskIndex) => {
@@ -19,7 +19,7 @@
       ...tasks.slice(taskIndex + 1)
     ]
 
-    render()
+    renderTasks()
   };
 
   const toggleTaskDone = (taskIndex) => {
@@ -32,7 +32,7 @@
       ...tasks.slice(taskIndex + 1)
     ]
 
-    render()
+    renderTasks()
   };
 
   const bindTaskEvents = () => {
@@ -57,7 +57,7 @@
     taskInput.focus()
   };
 
-  const render = () => {
+  const renderTasks = () => {
     const tasksList = document.querySelector(".js-tasksList")
     let htmlString = ""
 
@@ -89,6 +89,20 @@
     bindTaskEvents()
   };
 
+  const renderOptionButtons = () => {
+    const buttonsContainer = document.querySelector(".js-buttonsContainer")
+    let htmlString = ""
+    if (tasks.length !== 0) {
+      htmlString += `
+        <button class="optionButton">Ukryj ukończone</button>
+        <button class="optionButton">Ukończ wszystkie</button>
+      `
+      //pokaż ukończone
+
+      buttonsContainer.innerHTML = htmlString
+    }
+  }
+
   const onSubmit = (event) => {
     event.preventDefault();
     const taskInput = document.querySelector(".js-taskInput")
@@ -100,7 +114,8 @@
   };
 
   const init = () => {
-    render();
+    renderTasks();
+    renderOptionButtons();
 
     const form = document.querySelector(".js-form");
     form.addEventListener("submit", onSubmit);

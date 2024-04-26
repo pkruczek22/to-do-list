@@ -1,0 +1,13 @@
+.buttonsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 170px);
+    justify-content: end;
+    padding: 15px;
+}
+
+.optionButton {
+    background-color: transparent;
+    border: none;
+    color: hsl(184, 100%, 25%);
+    font-size: large;
+}
