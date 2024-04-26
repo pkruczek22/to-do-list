@@ -73,8 +73,8 @@
       const hideDoneButton = document.querySelector(".js-hideDoneButton")
       const markAllDoneButton = document.querySelector(".js-markAllDoneButton")
 
-      hideDoneButton.addEventListener("click", () => hideDoneTasks);
-      markAllDoneButton.addEventListener("click", () => markAllTasksDone);
+      hideDoneButton.addEventListener("click", hideDoneTasks);
+      markAllDoneButton.addEventListener("click", markAllTasksDone);
     };
   };
 
