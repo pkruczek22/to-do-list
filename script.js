@@ -8,18 +8,18 @@
     tasks = [
       ...tasks,
       { content: taskInput.value.trim() }
-    ]
+    ];
 
-    renderTasks();
+    render();
   };
 
   const deleteTask = (taskIndex) => {
     tasks = [
       ...tasks.slice(0, taskIndex),
       ...tasks.slice(taskIndex + 1)
-    ]
+    ];
 
-    renderTasks()
+    render();
   };
 
   const toggleTaskDone = (taskIndex) => {
@@ -30,9 +30,9 @@
         done: !tasks[taskIndex].done
       },
       ...tasks.slice(taskIndex + 1)
-    ]
+    ];
 
-    renderTasks()
+    render();
   };
 
   const bindTaskEvents = () => {
@@ -52,57 +52,91 @@
     });
   };
 
-  const refreshInput = (taskInput) => {
-    taskInput.value = ""
-    taskInput.focus()
-  };
+  const markAllTasksDone = () => {
+    tasks = tasks.map(task => ({
+      ...task,
+      done: true
+    }));
+    render()
+  }
 
+  const bindOptionButtonsEvent = () => {
+    const hideDoneButton = document.querySelector(".js-hideDoneButton")
+    const markAllDoneButton = document.querySelector(".js-markAllDoneButton")
+
+    hideDoneButton.addEventListener("click", () => console.log("Siema"))
+
+    markAllDoneButton.addEventListener("click", () => {
+      console.log("No co tam");
+      markAllTasksDone();
+    });
+  };
+  
   const renderTasks = () => {
     const tasksList = document.querySelector(".js-tasksList")
     let htmlString = ""
-
+    
     for (const task of tasks) {
       htmlString += `
       <li class="tasksList__item">
         <button 
-          class="tasksList__button tasksList__button--markDone js-markDoneButton"
+        class="tasksList__button tasksList__button--markDone js-markDoneButton"
         >
-          ${task.done ? "✔" : ""}
+        ${task.done ? "✔" : ""}
         </button>
         <span 
-          class="tasksList__content js-taskContent 
-          ${task.done ? "tasksList__content--done" : ""}"
+        class="tasksList__content js-taskContent 
+        ${task.done ? "tasksList__content--done" : ""}"
         >
-          ${task.content}
+        ${task.content}
         </span>
         <button 
-          class="tasksList__button tasksList__button--deleteTask js-deleteButton"
+        class="tasksList__button tasksList__button--deleteTask js-deleteButton"
         >
-          🗑
+        🗑
         </button>
-      </li>
-      `
+        </li>
+        `
+      };
+
+      tasksList.innerHTML = htmlString
     };
 
-    tasksList.innerHTML = htmlString
-
-    bindTaskEvents()
-  };
-
-  const renderOptionButtons = () => {
-    const buttonsContainer = document.querySelector(".js-buttonsContainer")
-    let htmlString = ""
-    if (tasks.length !== 0) {
-      htmlString += `
-        <button class="optionButton">Ukryj ukończone</button>
-        <button class="optionButton">Ukończ wszystkie</button>
-      `
-      //pokaż ukończone
-
-      buttonsContainer.innerHTML = htmlString
+    const renderOptionButtons = () => {
+      const buttonsContainer = document.querySelector(".js-buttonsContainer")
+      let htmlString = ""
+      if (tasks.length !== 0) {
+        htmlString += `
+        <button 
+        class="optionButton js-hideDoneButton"
+        >
+        Ukryj ukończone
+        </button>
+        <button 
+        class="optionButton js-markAllDoneButton" 
+        ${tasks.every(({ done }) => done === true) ? "disabled" : ""}
+        >
+        Ukończ wszystkie
+        </button>
+        `
+        //pokaż ukończone
+        
+        buttonsContainer.innerHTML = htmlString
+      }
     }
+    
+    const render = () => {
+      renderTasks();
+    bindTaskEvents();
+    renderOptionButtons();
+    bindOptionButtonsEvent();
   }
-
+  
+    const refreshInput = (taskInput) => {
+      taskInput.value = ""
+      taskInput.focus()
+    };
+  
   const onSubmit = (event) => {
     event.preventDefault();
     const taskInput = document.querySelector(".js-taskInput")
@@ -114,8 +148,7 @@
   };
 
   const init = () => {
-    renderTasks();
-    renderOptionButtons();
+    render();
 
     const form = document.querySelector(".js-form");
     form.addEventListener("submit", onSubmit);
