@@ -38,8 +38,8 @@
   };
 
   const bindTaskEvents = () => {
-    const deleteButtons = document.querySelectorAll(".js-deleteButton")
-    const markDoneButtons = document.querySelectorAll(".js-markDoneButton")
+    const deleteButtons = document.querySelectorAll(".js-deleteButton");
+    const markDoneButtons = document.querySelectorAll(".js-markDoneButton");
 
     deleteButtons.forEach((button, index) => {
       button.addEventListener("click", () => {
@@ -49,7 +49,7 @@
 
     markDoneButtons.forEach((button, index) => {
       button.addEventListener("click", () => {
-        toggleTaskDone(index)
+        toggleTaskDone(index);
       });
     });
   };
@@ -57,8 +57,8 @@
   const hideDoneTasks = () => {
     hideTasks = !hideTasks
 
-    render()
-  }
+    render();
+  };
 
   const markAllTasksDone = () => {
     tasks = tasks.map(task => ({
@@ -66,12 +66,12 @@
       done: true,
     }));
     render();
-  }
+  };
 
   const bindOptionButtonsEvent = () => {
     if (tasks.length) {
-      const hideDoneButton = document.querySelector(".js-hideDoneButton")
-      const markAllDoneButton = document.querySelector(".js-markAllDoneButton")
+      const hideDoneButton = document.querySelector(".js-hideDoneButton");
+      const markAllDoneButton = document.querySelector(".js-markAllDoneButton");
 
       hideDoneButton.addEventListener("click", hideDoneTasks);
       markAllDoneButton.addEventListener("click", markAllTasksDone);
@@ -79,7 +79,7 @@
   };
 
   const renderTasks = () => {
-    const tasksList = document.querySelector(".js-tasksList")
+    const tasksList = document.querySelector(".js-tasksList");
     let htmlString = ""
 
     for (const task of tasks) {
@@ -126,18 +126,18 @@
         >
           Ukończ wszystkie
         </button>
-        `
+        `;
+    };
 
-    }
     buttonsContainer.innerHTML = htmlString
-  }
+  };
 
   const render = () => {
     renderTasks();
     bindTaskEvents();
     renderOptionButtons();
     bindOptionButtonsEvent();
-  }
+  };
 
   const refreshInput = (taskInput) => {
     taskInput.value = ""
