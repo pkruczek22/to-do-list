@@ -4,7 +4,21 @@
         { content: "odrobić lekcje", done: true }
     ]
 
-    const render = () => {
+    const toggleTaskDone = (task) => {
+        tasks[task].done = !tasks[task].done;
+
+        render();
+    }
+
+    const bindEvents = () => {
+        const doneButtons = document.querySelectorAll(".js-markDoneButton")
+        
+        doneButtons.forEach((button, index) => {
+            button.addEventListener("click", () => {toggleTaskDone(index)})
+        });
+    };
+
+    const renderTasks = () => {
         const tasksList = document.querySelector(".js-tasksList")
         let htmlString = ""
 
@@ -24,8 +38,7 @@
                 >🗑
                 </button>
             </li>`
-        }
-        console.log(htmlString)
+        };
 
         tasksList.innerHTML = htmlString
     }
@@ -35,9 +48,9 @@
             content: taskInput.value
         }
 
-        tasks.push(newTask)
-        console.log(tasks)
-        render()
+        tasks.push(newTask);
+        console.log(tasks);
+        render();
     }
 
     const onSubmit = (event) => {
@@ -50,9 +63,14 @@
         taskInput.focus()
     }
 
+    const render = () => {
+        renderTasks();
+        bindEvents();
+    };
+
     const init = () => {
         const form = document.querySelector(".js-form");
-        render()
+        render();
 
         form.addEventListener("submit", (event) => onSubmit(event))
     }
