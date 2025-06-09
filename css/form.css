@@ -2,12 +2,19 @@
     display: grid;
     grid-template-columns: 1fr auto;
     padding: 15px 25px;
+    column-gap: 15px;
+}
+
+@media (max-width: 767px) {
+    .form {
+        grid-template-columns: 1fr;
+        row-gap: 10px;
+    }
 }
 
 .form__taskInput {
     height: 40px;
     padding: 3px 10px;
-    margin-right: 15px;
     border: 1px solid #eee;
 }
 
@@ -17,4 +24,10 @@
     color: #fff;
     border: none;
     padding: 10px;
+}
+
+@media (max-width: 767px) {
+    .form__button {
+        max-width: 100%;
+    }
 }
