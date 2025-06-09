@@ -1,0 +1,12 @@
+.section {
+    background-color: #fff;
+    margin-top:10px;
+}
+
+.section__header {
+    margin: 0px;
+    padding: 15px 25px;
+    border-bottom: 2px solid #eee;
+    font-size: 25px;
+}
+    
