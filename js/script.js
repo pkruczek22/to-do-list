@@ -1,16 +1,31 @@
 {
-    const tasks = [{ content: "wyrzucić śmieci", done: false }]
+    const tasks = [
+        { content: "wyrzucić śmieci", done: false },
+        { content: "odrobić lekcje", done: true }
+    ]
 
     const render = () => {
         const tasksList = document.querySelector(".js-tasksList")
         let htmlString = ""
 
-        for(const task of tasks) {
+        for (const task of tasks) {
             htmlString += `
             <li class="tasksList__item">
-                <span>${task.content}</span>
+                <button 
+                    class="tasksList__button tasksList__button--markDone js-markDoneButton"
+                    >${task.done? "✔" : ""}
+                </button>
+                <span 
+                class="tasksList__content${task.done? " tasksList__content--done" : ""}"
+                >${task.content}
+                </span>
+                <button 
+                class="tasksList__button tasksList__button--deleteTask js-deleteTask"
+                >🗑
+                </button>
             </li>`
         }
+        console.log(htmlString)
 
         tasksList.innerHTML = htmlString
     }

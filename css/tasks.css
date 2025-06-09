@@ -6,4 +6,33 @@
 
 .tasksList__item {
     list-style-type: none;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    margin-top: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.tasksList__content {
+    margin-left: 10px;
+    align-content: center;
+}
+
+.tasksList__content--done {
+    text-decoration: line-through;
+}
+
+.tasksList__button {
+    width: 35px;
+    height: 35px;
+    border: 0px;
+    color: #fff;
+}
+
+.tasksList__button--markDone {
+   background-color: green;
+}
+
+.tasksList__button--deleteTask {
+    background-color: red;
 }
