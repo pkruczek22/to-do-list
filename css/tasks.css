@@ -1,0 +1,9 @@
+.tasksList {
+    margin: 0px;
+    padding: 15px 25px;
+    min-height: 60px;
+}
+
+.tasksList__item {
+    list-style-type: none;
+}
