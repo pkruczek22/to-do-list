@@ -15,7 +15,9 @@
 
 .tasksList__content {
     margin-left: 10px;
+    margin-right: 10px;
     align-content: center;
+    word-break: break-word;
 }
 
 .tasksList__content--done {
