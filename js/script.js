@@ -4,18 +4,40 @@
         { content: "odrobić lekcje", done: true }
     ]
 
-    const toggleTaskDone = (task) => {
-        tasks[task].done = !tasks[task].done;
+    const addTask = (taskInput) => {
+        const newTask = {
+            content: taskInput.value
+        }
+
+        tasks.push(newTask);
+        console.log(tasks);
+        render();
+    }
+
+    const deleteTask = (taskIndex) => {
+        tasks.splice(taskIndex, 1)
+        console.log("działa")
+
+        render();
+    }
+
+    const toggleTaskDone = (taskIndex) => {
+        tasks[taskIndex].done = !tasks[taskIndex].done;
 
         render();
     }
 
     const bindEvents = () => {
         const doneButtons = document.querySelectorAll(".js-markDoneButton")
-        
+        const deleteButtons = document.querySelectorAll(".js-deleteTask")
+
         doneButtons.forEach((button, index) => {
-            button.addEventListener("click", () => {toggleTaskDone(index)})
+            button.addEventListener("click", () => { toggleTaskDone(index) })
         });
+
+        deleteButtons.forEach((button, index) => {
+            button.addEventListener("click", () => { deleteTask(index) })
+        })
     };
 
     const renderTasks = () => {
@@ -27,10 +49,10 @@
             <li class="tasksList__item">
                 <button 
                     class="tasksList__button tasksList__button--markDone js-markDoneButton"
-                    >${task.done? "✔" : ""}
+                    >${task.done ? "✔" : ""}
                 </button>
                 <span 
-                class="tasksList__content${task.done? " tasksList__content--done" : ""}"
+                class="tasksList__content${task.done ? " tasksList__content--done" : ""}"
                 >${task.content}
                 </span>
                 <button 
@@ -43,29 +65,24 @@
         tasksList.innerHTML = htmlString
     }
 
-    const addNewTask = (taskInput) => {
-        const newTask = {
-            content: taskInput.value
-        }
+    const render = () => {
+        renderTasks();
+        bindEvents();
+    };
 
-        tasks.push(newTask);
-        console.log(tasks);
-        render();
-    }
-
-    const onSubmit = (event) => {
-        const taskInput = document.querySelector(".js-taskInput")
-
-        event.preventDefault();
-        console.log(taskInput.value)
-        addNewTask(taskInput)
+    const refreshInput = (taskInput) => {
         taskInput.value = ""
         taskInput.focus()
     }
 
-    const render = () => {
-        renderTasks();
-        bindEvents();
+    const onSubmit = (event) => {
+        event.preventDefault();
+        const taskInput = document.querySelector(".js-taskInput")
+
+        if (taskInput.value.trim()) {
+            addTask(taskInput);
+            refreshInput(taskInput);
+        };
     };
 
     const init = () => {
