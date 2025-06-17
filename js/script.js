@@ -4,6 +4,8 @@
         { content: "odrobić lekcje", done: true }
     ];
 
+    let hideDoneTask = false;
+
     const addTask = (taskInput) => {
         tasks = [
             ...tasks,
@@ -35,7 +37,15 @@
         render();
     }
 
-    const bindEvents = () => {
+    const hideDoneTasks = () => {
+        hideDoneTask = !hideDoneTask;
+
+        console.log(hideDoneTask)
+
+        render()
+    }
+
+    const bindTasksEvents = () => {
         const doneButtons = document.querySelectorAll(".js-markDoneButton")
         const deleteButtons = document.querySelectorAll(".js-deleteTask")
 
@@ -48,13 +58,21 @@
         })
     };
 
+    const bindOptionButtonsEvents = () => {
+        const hideDoneTasksButton = document.querySelector(".js-hideDoneButton")
+        const markAllDoneTasksButton = document.querySelector(".js-markAllDoneButton")
+
+        hideDoneTasksButton.addEventListener("click", hideDoneTasks)
+        markAllDoneTasksButton.addEventListener("click", () => {console.log(markAllDoneTasksButton)})
+    }
+
     const renderTasks = () => {
         const tasksList = document.querySelector(".js-tasksList")
         let htmlString = ""
 
         for (const task of tasks) {
             htmlString += `
-            <li class="tasksList__item">
+            <li class="tasksList__item${hideDoneTask && task.done ? " tasksList__item--hidden" : ""}">
                 <button 
                     class="tasksList__button tasksList__button--markDone js-markDoneButton"
                     >${task.done ? "✔" : ""}
@@ -75,7 +93,8 @@
 
     const render = () => {
         renderTasks();
-        bindEvents();
+        bindTasksEvents();
+        bindOptionButtonsEvents();
     };
 
     const refreshInput = (taskInput) => {

@@ -13,6 +13,10 @@
     padding-bottom: 10px;
 }
 
+.tasksList__item--hidden {
+    display: none;
+}
+
 .tasksList__content {
     margin-left: 10px;
     margin-right: 10px;
