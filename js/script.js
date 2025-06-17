@@ -1,28 +1,36 @@
 {
-    const tasks = [
+    let tasks = [
         { content: "wyrzucić śmieci", done: false },
         { content: "odrobić lekcje", done: true }
-    ]
+    ];
 
     const addTask = (taskInput) => {
-        const newTask = {
-            content: taskInput.value
-        }
+        tasks = [
+            ...tasks,
+            { content: taskInput.value.trim() }
+        ]
 
-        tasks.push(newTask);
-        console.log(tasks);
         render();
-    }
+    };
 
     const deleteTask = (taskIndex) => {
-        tasks.splice(taskIndex, 1)
-        console.log("działa")
+        tasks = [
+            ...tasks.slice(0, taskIndex),
+            ...tasks.slice(taskIndex + 1)
+        ]
 
         render();
-    }
+    };
 
     const toggleTaskDone = (taskIndex) => {
-        tasks[taskIndex].done = !tasks[taskIndex].done;
+        tasks = [
+            ...tasks.slice(0, taskIndex),
+            {
+                ...tasks[taskIndex],
+                done: !tasks[taskIndex].done
+            },
+            ...tasks.slice(taskIndex + 1)
+        ]
 
         render();
     }
