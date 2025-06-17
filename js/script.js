@@ -4,6 +4,8 @@
         { content: "odrobić lekcje", done: true }
     ];
 
+    let hideDoneTask = false;
+
     const addTask = (taskInput) => {
         tasks = [
             ...tasks,
@@ -33,9 +35,24 @@
         ]
 
         render();
+    };
+
+    const hideDoneTasks = () => {
+        hideDoneTask = !hideDoneTask;
+
+        render();
+    };
+
+    const markAllTasksDone = () => {
+        tasks = tasks.map(task => ({
+            ...task,
+            done: true
+        }))
+
+        render();
     }
 
-    const bindEvents = () => {
+    const bindTasksEvents = () => {
         const doneButtons = document.querySelectorAll(".js-markDoneButton")
         const deleteButtons = document.querySelectorAll(".js-deleteTask")
 
@@ -48,13 +65,21 @@
         })
     };
 
+    const bindOptionButtonsEvents = () => {
+        const hideDoneTasksButton = document.querySelector(".js-hideDoneButton")
+        const markAllDoneTasksButton = document.querySelector(".js-markAllDoneButton")
+
+        hideDoneTasksButton.addEventListener("click", hideDoneTasks)
+        markAllDoneTasksButton.addEventListener("click", markAllTasksDone)
+    }
+
     const renderTasks = () => {
         const tasksList = document.querySelector(".js-tasksList")
         let htmlString = ""
 
         for (const task of tasks) {
             htmlString += `
-            <li class="tasksList__item">
+            <li class="tasksList__item${hideDoneTask && task.done ? " tasksList__item--hidden" : ""}">
                 <button 
                     class="tasksList__button tasksList__button--markDone js-markDoneButton"
                     >${task.done ? "✔" : ""}
@@ -71,11 +96,36 @@
         };
 
         tasksList.innerHTML = htmlString
+    };
+
+    const renderOptionButtons = () => {
+        const optionButtonsContainer = document.querySelector(".js-optionButtonsContainer")
+
+        let htmlString = ""
+
+        if (tasks.length) {
+            htmlString += `
+            <button 
+                class="section__button js-hideDoneButton"
+                ${tasks.some(({done}) => done) ? "" : "disabled"}
+                >${hideDoneTask ? "Pokaż" : "Ukryj"} ukończone
+            </button>
+            <button 
+                class="section__button js-markAllDoneButton"
+                ${tasks.every(({done}) => done) ? "disabled" : ""}
+                >Ukończ wszystkie
+            </button>
+            `
+        }
+
+        optionButtonsContainer.innerHTML = htmlString
     }
 
     const render = () => {
         renderTasks();
-        bindEvents();
+        renderOptionButtons();
+        bindTasksEvents();
+        bindOptionButtonsEvents();
     };
 
     const refreshInput = (taskInput) => {

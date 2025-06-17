@@ -1,7 +1,20 @@
 .section {
     background-color: #fff;
-    margin-top:10px;
+    margin-top: 10px;
     box-shadow: 0px 1px 10px 1px #d8d8d8;
+}
+
+.section__container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    border-bottom: 2px solid #eee;
+    align-items: center;
+}
+
+@media (max-width:767px) {
+    .section__container{
+        grid-template-columns: 1fr;
+    }
 }
 
 .section__header {
@@ -10,4 +23,45 @@
     border-bottom: 2px solid #eee;
     font-size: 25px;
 }
-    
+
+.section__header--listHeader {
+    border: none;
+}
+
+.section__buttonsContainer {
+    display: flex;
+    padding: 15px 25px;
+    align-self: center;
+    justify-content: center;
+    min-height: 70px;
+}
+
+@media (max-width:767px) {
+    .section__buttonsContainer {
+        flex-direction: column;
+        padding-top: 0px;
+        min-height: 0px;
+    }
+}
+
+.section__button {
+    background: none;
+    border: none;
+    margin: 0px;
+    color: hsl(180, 100%, 25%);
+    padding: 10px 15px;
+    transition: 0.4s;
+}
+
+.section__button:hover {
+   color: hsl(180, 100%, 35%); 
+   outline: none;
+}
+
+.section__button:active {
+   color: hsl(180, 100%, 40%); 
+}
+
+.section__button:disabled {
+    color: #aaa;
+}
