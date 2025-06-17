@@ -8,6 +8,7 @@
     display: grid;
     grid-template-columns: 1fr auto;
     border-bottom: 2px solid #eee;
+    align-items: center;
 }
 
 @media (max-width:767px) {
@@ -32,12 +33,14 @@
     padding: 15px 25px;
     align-self: center;
     justify-content: center;
+    min-height: 70px;
 }
 
 @media (max-width:767px) {
     .section__buttonsContainer {
         flex-direction: column;
         padding-top: 0px;
+        min-height: 0px;
     }
 }
 
@@ -57,4 +60,8 @@
 
 .section__button:active {
    color: hsl(180, 100%, 40%); 
+}
+
+.section__button:disabled {
+    color: #aaa;
 }
