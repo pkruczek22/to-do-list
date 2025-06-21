@@ -1,0 +1,37 @@
+.buttonsContainer {
+    display: flex;
+    padding: 15px 25px;
+    align-self: center;
+    justify-content: center;
+    min-height: 70px;
+}
+
+@media (max-width:767px) {
+    .buttonsContainer {
+        flex-direction: column;
+        padding-top: 0px;
+        min-height: 0px;
+    }
+}
+
+.optionButton {
+    background: none;
+    border: none;
+    margin: 0px;
+    color: hsl(180, 100%, 25%);
+    padding: 10px 15px;
+    transition: 0.4s;
+}
+
+.optionButton:hover {
+   color: hsl(180, 100%, 35%); 
+   outline: none;
+}
+
+.optionButton:active {
+   color: hsl(180, 100%, 40%); 
+}
+
+.optionButton:disabled {
+    color: #aaa;
+}
